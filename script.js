@@ -1,53 +1,72 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- INTERAÇÃO 1: Animação de Fade-in ao Rolar a Página ---
-    // Esta função faz com que os elementos apareçam suavemente no ecrã.
-
     const fadeElems = document.querySelectorAll('.fade-in');
-
     const observerOptions = {
-        root: null, // usa a viewport do navegador
+        root: null,
         rootMargin: '0px',
-        threshold: 0.1 // o elemento é considerado visível quando 10% dele está no ecrã
+        threshold: 0.1
     };
-
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                observer.unobserve(entry.target); // para a observação depois de animar
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
-
     fadeElems.forEach(elem => {
         observer.observe(elem);
     });
 
-    // --- INTERAÇÃO 2: Galeria de Imagens Interativa (Modal) ---
-    // Esta função faz com que, ao clicar numa imagem, ela apareça em tamanho grande.
+    // --- INTERAÇÃO 2: Inicialização do Carrossel Swiper.js (NOVO) ---
+    var swiper = new Swiper(".mySwiper", {
+        effect: "coverflow", // Efeito visual do carrossel
+        grabCursor: true, // Mostra uma mãozinha ao passar o rato
+        centeredSlides: true, // Slide ativo fica no centro
+        slidesPerView: "auto", // Mostra a quantidade de slides que couber
+        loop: true, // Faz o carrossel ser infinito
+        coverflowEffect: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
+        },
+        pagination: {
+            el: ".swiper-pagination", // Elemento da paginação (bolinhas)
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next", // Elemento da seta "próximo"
+            prevEl: ".swiper-button-prev", // Elemento da seta "anterior"
+        },
+    });
+
+
+    // --- INTERAÇÃO 3: Galeria de Imagens Interativa (Modal) - ATUALIZADO ---
+    // Esta função continua a funcionar para que, ao clicar numa imagem do carrossel,
+    // ela abra em tela cheia.
 
     const modal = document.getElementById('modal');
     const modalImg = document.getElementById('modal-img');
     const captionText = document.getElementById('caption');
-    const galleryItems = document.querySelectorAll('.gallery-item');
+    // ATUALIZADO: Agora seleciona as imagens dentro dos slides do carrossel
+    const galleryItems = document.querySelectorAll('.swiper-slide img'); 
     const closeBtn = document.querySelector('.close-button');
 
-    // Percorre todas as imagens da galeria e adiciona um "ouvinte" de clique
     galleryItems.forEach(item => {
         item.onclick = function() {
-            modal.style.display = "block"; // Mostra o modal
-            modalImg.src = this.src; // Define a imagem do modal como a imagem clicada
-            captionText.innerHTML = this.alt; // Usa o texto 'alt' como legenda
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt;
         }
     });
 
-    // Função para fechar o modal ao clicar no 'X'
     closeBtn.onclick = function() {
         modal.style.display = "none";
     }
 
-    // Função para fechar o modal ao clicar fora da imagem
     window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
