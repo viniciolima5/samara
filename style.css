@@ -165,3 +165,10 @@ footer {
     font-weight: bold;
     cursor: pointer;
 }
+.video-section iframe {
+    width: 100%; /* Ocupa a largura disponível do container */
+    max-width: 800px; /* Define um tamanho máximo */
+    min-height: 450px; /* Define uma altura mínima */
+    border: none;
+    border-radius: 8px;
+}
