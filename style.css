@@ -208,7 +208,7 @@ body, main {
     overflow-y: auto;   /* Garante que a barra de scroll vertical sempre aparece se for preciso */
 }
 
-/* .message {
+.message {
     position: relative;
     z-index: 1;
-} */
+}
