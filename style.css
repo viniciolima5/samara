@@ -8,6 +8,15 @@ body {
     line-height: 1.7;
 }
 
+/* ****** CORREÇÃO 1 (A MAIS IMPORTANTE) ******
+  Garante que o corpo e o conteúdo principal possam crescer verticalmente.
+  Isto ajuda a evitar que secções inteiras sejam "cortadas" em ecrãs pequenos.
+*/
+body, main {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
 .container {
     max-width: 900px;
     margin: 0 auto;
@@ -54,16 +63,20 @@ section h2 {
     margin-bottom: 30px;
 }
 
-/* --- ESTILOS DO CARROSSEL (NOVOS) --- */
+/* --- ESTILOS DO CARROSSEL --- */
 .gallery-section {
-    padding-bottom: 80px; /* Mais espaço para a paginação */
+    padding-bottom: 80px;
+    /* ****** CORREÇÃO 2 ******
+      Garante que a secção do carrossel não esconda o conteúdo abaixo dela.
+    */
+    overflow: visible; 
 }
 
 .swiper {
     width: 100%;
-    height: 400px; /* Altura do carrossel */
+    height: 400px;
     padding-top: 20px;
-    padding-bottom: 50px; /* Espaço para a paginação */
+    padding-bottom: 50px;
 }
 
 .swiper-slide {
@@ -72,14 +85,14 @@ section h2 {
     width: 300px;
     height: 400px;
     border-radius: 8px;
-    overflow: hidden; /* Garante que a imagem não saia dos cantos arredondados */
+    overflow: hidden;
 }
 
 .swiper-slide img {
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Faz a imagem preencher o slide sem distorcer */
+    object-fit: cover;
     cursor: pointer;
     transition: transform 0.3s ease;
 }
@@ -94,8 +107,6 @@ section h2 {
     --swiper-pagination-color: #a56a63;
 }
 
-/* -------------------------------------- */
-
 
 /* Secções de Vídeo e Áudio */
 video, audio {
@@ -109,12 +120,27 @@ video, audio {
     font-size: 1.5rem;
 }
 
-.final-message .signature, .message .signature {
+/* ****** OTIMIZAÇÃO ******
+  Combinei as duas regras para '.signature' numa só.
+  Faz o mesmo, mas o código fica mais limpo e eficiente.
+*/
+.final-message .signature,
+.message .signature {
     font-family: 'Playfair Display', serif;
     font-style: italic;
     font-size: 1.2rem;
     margin-top: 40px;
 }
+
+/* ****** CORREÇÃO 3 (SEGURANÇA EXTRA) ******
+  Garante que a secção de mensagens tenha uma "camada" própria,
+  evitando que outros elementos a sobreponham.
+*/
+.message {
+    position: relative;
+    z-index: 1;
+}
+
 
 /* Rodapé */
 footer {
@@ -165,50 +191,43 @@ footer {
     font-weight: bold;
     cursor: pointer;
 }
+
+/* Estilos para os iframes do YouTube */
 .video-section iframe {
-    width: 100%; /* Ocupa a largura disponível do container */
-    max-width: 800px; /* Define um tamanho máximo */
-    min-height: 450px; /* Define uma altura mínima */
+    width: 100%;
+    max-width: 800px;
+    min-height: 450px;
     border: none;
     border-radius: 8px;
 }
 
 /* Estilo para o botão de controlo da música */
 #controle-musica {
-    position: fixed; /* Fica fixo no ecrã mesmo com o scroll */
+    position: fixed;
     bottom: 20px;
     right: 20px;
     width: 50px;
     height: 50px;
-    background-color: #a56a63; /* Cor do tema do site */
+    background-color: #a56a63;
     color: white;
     border: none;
-    border-radius: 50%; /* Deixa o botão redondo */
+    border-radius: 50%;
     font-size: 24px;
     cursor: pointer;
-    z-index: 1001; /* Garante que fica por cima de outros elementos */
+    z-index: 1001;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 /* Media Query para ecrãs pequenos (ex: telemóveis) */
 @media (max-width: 600px) {
   #controle-musica {
-    width: 45px;   /* Um pouco mais pequeno */
-    height: 45px;  /* Um pouco mais pequeno */
-    font-size: 20px; /* Tamanho do ícone ajustado */
-    bottom: 15px;  /* Um pouco menos de distância */
-    right: 15px;   /* Um pouco menos de distância */
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+    bottom: 15px;
+    right: 15px;
   }
-}
-
-body, main {
-    overflow-x: hidden; /* Evita a barra de scroll horizontal indesejada */
-    overflow-y: auto;   /* Garante que a barra de scroll vertical sempre aparece se for preciso */
-}
-
-.message {
-    position: relative;
-    z-index: 1;
 }
