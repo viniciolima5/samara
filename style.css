@@ -202,3 +202,13 @@ footer {
     right: 15px;   /* Um pouco menos de distância */
   }
 }
+
+body, main {
+    overflow-x: hidden; /* Evita a barra de scroll horizontal indesejada */
+    overflow-y: auto;   /* Garante que a barra de scroll vertical sempre aparece se for preciso */
+}
+
+/* .message {
+    position: relative;
+    z-index: 1;
+} */
