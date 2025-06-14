@@ -73,3 +73,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
+// --- CONTROLO DA MÚSICA DE FUNDO (RECOMENDADO) ---
+const musicaFundo = document.getElementById('musica-fundo');
+const controleMusica = document.getElementById('controle-musica');
+
+// Define o volume inicial (opcional, 0.5 = 50% do volume)
+musicaFundo.volume = 0.25;
+
+controleMusica.addEventListener('click', () => {
+    // Verifica se a música está pausada
+    if (musicaFundo.paused) {
+        musicaFundo.play();
+        controleMusica.innerHTML = '⏸️'; // Muda o ícone para pause
+    } else {
+        musicaFundo.pause();
+        controleMusica.innerHTML = '🎵'; // Muda o ícone para play
+    }
+});

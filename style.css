@@ -172,3 +172,33 @@ footer {
     border: none;
     border-radius: 8px;
 }
+
+/* Estilo para o botão de controlo da música */
+#controle-musica {
+    position: fixed; /* Fica fixo no ecrã mesmo com o scroll */
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #a56a63; /* Cor do tema do site */
+    color: white;
+    border: none;
+    border-radius: 50%; /* Deixa o botão redondo */
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1001; /* Garante que fica por cima de outros elementos */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* Media Query para ecrãs pequenos (ex: telemóveis) */
+@media (max-width: 600px) {
+  #controle-musica {
+    width: 45px;   /* Um pouco mais pequeno */
+    height: 45px;  /* Um pouco mais pequeno */
+    font-size: 20px; /* Tamanho do ícone ajustado */
+    bottom: 15px;  /* Um pouco menos de distância */
+    right: 15px;   /* Um pouco menos de distância */
+  }
+}
