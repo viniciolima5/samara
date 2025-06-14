@@ -198,16 +198,6 @@ footer {
     justify-content: center;
     align-items: center;
 }
-/* Media Query para ecrãs pequenos (ex: telemóveis) */
-@media (max-width: 600px) {
-  #controle-musica {
-    width: 45px;   /* Um pouco mais pequeno */
-    height: 45px;  /* Um pouco mais pequeno */
-    font-size: 20px; /* Tamanho do ícone ajustado */
-    bottom: 15px;  /* Um pouco menos de distância */
-    right: 15px;   /* Um pouco menos de distância */
-  }
-}
 
 body, main {
     overflow-x: hidden; /* Evita a barra de scroll horizontal indesejada */
